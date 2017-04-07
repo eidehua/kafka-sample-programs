@@ -65,7 +65,7 @@ public class Task2 {
                     case "mock_twitter_stream":
                         // the send time is encoded inside the message
                         JsonNode msg = mapper.readTree(record.value());
-                        if (msg.get("limit").isNull()) {
+                        if (msg.get("limit") == null) {
                         	//Otherwise write the message to a Kafka topic called "spark_input"
                         	// I basically check the JSON to see if it has the limit key -- if it does not, then it is a tweet
                             producer.send(new ProducerRecord<String, String>(
